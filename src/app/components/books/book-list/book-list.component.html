@@ -1,0 +1,19 @@
+<section class="list">
+    <h2 >Cátalago de Livros</h2>
+    <ul class="list__grid">
+        @for (book of books(); track book.id) {
+            <li>
+                <app-book-card [book]="book"></app-book-card>
+
+                <button
+                class="button"
+                (click)="remove(book.id)"
+                >Excluir</button>
+
+            </li>
+        } @empty {
+            <p class="list__empty">Nenhum livro cadastrado.</p>
+        }
+    </ul>
+</section>
+
