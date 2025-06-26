@@ -11,7 +11,7 @@ import { MatButtonModule } from "@angular/material/button";
         <p>{{ data.message }}</p>
     </div>
     <div mat-dialog-actions align="end">
-        <button mat-button mat=dialog>Fechar</button>
+        <button mat-button mat-dialog-close>OK</button>
     </div>
     `
 })

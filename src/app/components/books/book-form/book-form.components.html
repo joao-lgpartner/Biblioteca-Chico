@@ -1,3 +1,22 @@
+<header class="navbar">
+    <div class="navbar__left">
+        <img class="img-icon" src="livro-flor.png">
+        <strong class="title"> Biblioteca do chiquinho</strong>
+    </div>
+
+    <div class="navbar__center">
+        <input type="text"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearchChange($event)"
+        placeholder="Buscar Livro..."
+        > 
+    </div>
+
+    <div class="navbar__right">
+        <a class="btn btn--outline">Login</a>
+    </div>
+</header>
+
 <div class="form-wrapper">
     <mat-card>
         <mat-card-title>Cadastro de Livro</mat-card-title>
