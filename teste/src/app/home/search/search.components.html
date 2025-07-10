@@ -1,0 +1,22 @@
+<div class="search-box">
+    <input type="text"
+    [(ngModel)]="searchQuery"
+    (ngModelChange)="onSearchChange($event)"
+    placeholder="Buscar livros..."
+    class="search-input"
+    />
+    <ul class="suggestions" [hidden]="showSuggestions">
+        @if (filteredBooks.length === 0){
+                <span>Livro não encontrado</span>
+        }@else {
+            @for (book of filteredBooks; track book.id) {
+                <li> <!--[routerLink=""]-->
+                        <span [innerHTML]="highlightMatch(book.title, searchQuery)"></span> -
+                        <span [innerHTML]="highlightMatch(book.author, searchQuery)"></span> -
+                        <span [innerHTML]="highlightMatch(book.year.toString(), searchQuery)"></span>
+                </li>
+        }
+        }
+        
+    </ul>
+</div>

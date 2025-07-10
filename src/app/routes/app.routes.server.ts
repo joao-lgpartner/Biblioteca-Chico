@@ -15,5 +15,9 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'edit-book/:id', renderMode: RenderMode.Client
+  },
+  {
+    path: 'login',
+    renderMode: RenderMode.Client
   }
 ];

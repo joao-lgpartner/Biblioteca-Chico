@@ -2,15 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
     padding: 1rem;
     background-color: #B33791;
     font-family: Arial, Helvetica, sans-serif;
-    &__center input{
-        padding: 0.5rem;
-        border-radius: 4px;
-        border: none;
-        width: 200px;   
-    }
+    height: 40px;
+
     &__left input {
         color: white
     }

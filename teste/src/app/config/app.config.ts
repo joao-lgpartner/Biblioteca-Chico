@@ -3,15 +3,13 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from '../routes/app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { bookServiceProvider } from '../components/books/service/book.provider.service';
-import { UserProviderService } from '../components/user/service/user-provider.service';
+import { bookServiceProvider } from '../books/service/book.provider.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes), provideClientHydration(withEventReplay()),
-    bookServiceProvider,
-    UserProviderService,
+    bookServiceProvider
   ]
 };

@@ -42,7 +42,7 @@ export class BookForms {
       this.feedback.success("Sucesso ao adicionar o Livro")
       this.router.navigate(['/']);
     }else{
-      this.feedback.error(`Erro ${result.error}`)
+      this.feedback.error(`Erro ${result.data}`)
     }
   }
 

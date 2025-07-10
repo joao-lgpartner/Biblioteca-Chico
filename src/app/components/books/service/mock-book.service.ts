@@ -40,7 +40,16 @@ export class MockBookService extends AbstractBookService{
   }
 
   override search(query: any): Observable<OperationResult> {
-      return of()
+    try{
+      const data = this._books().filter(book =>
+            book.title.toLowerCase().includes(query.toLowerCase()) ||
+            book.author.toLowerCase().includes(query.toLowerCase()) ||
+            book.year.toString().includes(query)
+          )
+          return of({success: true, data, status: 200});
+    }catch(error){
+      return of({success: false, error, status: 500});
+    }
   }
 
   override update(book: Book): Observable<OperationResult> {
