@@ -9,9 +9,9 @@ import { OperationResult } from '../../models/operation-result.model';
 export class MockBookService extends AbstractBookService{
     //save database
     private _books = signal<Book[]>([
-        {id: 1, title: 'Clean Code', author: 'Eu', year: 2021},
-        {id: 2, title: 'Cristiane F', author: 'Cristiane F', year: 2000},
-        {id: 3, title: 'Senhor dos Aneis', author: 'Eu também', year: 2011},
+        {id: 1, title: 'Clean Code', author: 'Robert Martin', year: 2008},
+        {id: 2, title: 'Harry Potter', author: 'J. K. Rowling', year: 1997},
+        {id: 3, title: 'O Senhor dos Aneis', author: 'J. R. Tolkien', year: 1954},
       ])
       //object Book
       books: Signal<Book[]> = computed(()=>this._books())
@@ -33,11 +33,29 @@ export class MockBookService extends AbstractBookService{
             }
         }
 
-        override update(book: Book) {
-            return of()
+        override update(book: Book): Observable<OperationResult> {
+            try {
+                let updated = false;
+                this._books.update(list => 
+                    list.map(b => {
+                        if (b.id === book.id) {
+                            updated = true;
+                            return { ...book }
+                        }
+                        return b
+                    })
+                );
+                if (updated) {
+                    return of({ success: true, status: 200 });
+                } else {
+                    return of({ success: false, status: 304, data: "Error to update Book" });
+                }
+            } catch (error) {
+                return of({ success: false, status: 500, data: error });
+            }
         }
 
-        override remove(id: number) : Observable<OperationResult>{
+        override remove(id: number): Observable<OperationResult>{
             try{
                 this._books.update(list=>list.filter((b: Book)=>b.id !== id))
                 return of({success: true, status: 200})
@@ -64,6 +82,15 @@ export class MockBookService extends AbstractBookService{
         }
 
         override searchById(id: number): Observable<OperationResult> {
-            return of()
+            try {
+                const found = this._books().find(book => book.id === id);
+                if (found){
+                    return of({success: true, status: 200, data: found});
+                }else{
+                    return of({success: false, status: 404, data: "Book does'nt found"});
+                }
+            }catch (error) {
+                return of({success: false, status: 500, data: error});
+            }
         }
 }

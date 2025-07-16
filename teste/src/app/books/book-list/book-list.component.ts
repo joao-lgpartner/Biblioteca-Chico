@@ -3,10 +3,12 @@ import {CommonModule} from '@angular/common'
 import { BookCard } from '../book-card/book-card.component';
 import { AbstractBookService } from '../service/abstract-book.service';
 import { firstValueFrom } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
-  imports: [CommonModule, BookCard],
+  imports: [CommonModule, BookCard, MatIconModule, RouterLink],
   standalone: true,
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.scss'

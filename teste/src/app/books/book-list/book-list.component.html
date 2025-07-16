@@ -5,9 +5,18 @@
             <li>
                 <app-book-card [book]="b">
                 </app-book-card>
-                <button class="btn" 
-                (click)="remove(b.id)">Excluir
-                </button>
+                <div class="list__actions">
+                    <button class="btn" 
+                        (click)="remove(b.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Remover</span>
+                    </button>
+                    <button class="btn" style="background-color: white; color: #000;" [routerLink]="['/edit-book', b.id]">
+                        <mat-icon>edit</mat-icon>
+                        <span>Editar</span>
+                    </button>
+                </div>
+                
             </li>
         }@empty {
             <p class="list__empty">Livro em branco</p>

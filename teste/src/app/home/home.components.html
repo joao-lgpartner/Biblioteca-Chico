@@ -1,12 +1,13 @@
 <mat-toolbar color="primary" class="navbar">
     <div class="navbar__left">
+        <img src="livro-flor.png" class="navbar__logo">
         <strong>Biblioteca do Chiquinho</strong>
     </div>
     <div class="navbar__center">
         <app-search></app-search>
     </div>
     <div class="navbar__right">
-        <button mat-icon-button routerLink="'/add-book'">
+        <button mat-icon-button routerLink="/add-book">
             <mat-icon>add</mat-icon>
         </button>
         <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="Perfil">
