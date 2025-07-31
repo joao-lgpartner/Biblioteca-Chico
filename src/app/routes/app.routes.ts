@@ -1,13 +1,11 @@
 import { Routes } from '@angular/router';
-import { BookList } from '../components/books/book-list/book-list.component';
-import { BookForms } from '../components/books/book-form/book-form.components';
-import { Home } from '../components/home/home.components'
-import { LoginComponent } from '../components/user/login/login.component';
+import { BookList } from '../books/book-list/book-list.component';
+import { BookForm } from '../books/book-form/book-form.component';
+import { Home } from '../home/home.components';
 
 export const routes: Routes = [
-    {path: '', component: Home, pathMatch: 'full'},
-    {path: 'books', component: BookList},
-    {path: 'add-book', component: BookForms},
-    {path: 'edit-book/:id', component: BookForms},
-    {path: 'login', component: LoginComponent},
+    {path:'', component: Home, pathMatch: 'full'},
+    {path:'books', component: BookList},
+    {path: 'add-book', component: BookForm},
+    {path: 'edit-book/:id', component: BookForm}
 ];

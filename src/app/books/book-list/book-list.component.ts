@@ -17,9 +17,15 @@ export class BookList {
   private service = inject(AbstractBookService)
   books = this.service.books;
   trackById = (_:number, item: any) => item.id;
+
+  ngOnInit() {
+    this.service.refresh();
+    this.books = this.service.books;
+  }
   
 
   async remove(id: number): Promise<void>{
     const result = await firstValueFrom(this.service.remove(id))
+    this.service.refresh();
   }
 }
