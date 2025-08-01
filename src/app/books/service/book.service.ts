@@ -7,6 +7,7 @@ import { AbstractBookService } from './abstract-book.service';
 import { Book } from '../model/book.model';
 import { OperationResult } from '../../models/operation-result.model';
 import { stat } from 'node:fs';
+import { AuthService } from '../../service/auth.service';
 
 @Injectable()
 export class BookService extends AbstractBookService{
@@ -14,13 +15,13 @@ export class BookService extends AbstractBookService{
 
     books = computed(()=>this._books());
 
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient, private authService: AuthService) {
         super();
         this.refresh();
     }
 
     override refresh(): void {
-        this.http.get<Book[]>(`${environment.apiUrl}/book/list`, {observe: 'response'})
+        this.http.get<Book[]>(`${environment.apiUrl}/book/list`, {observe: 'response', headers: {Authorization: `Bearer ${this.authService.token}`}})
         .subscribe(response => {
             if(response.status === 200 && response.body){
                 this._books.set(response.body)

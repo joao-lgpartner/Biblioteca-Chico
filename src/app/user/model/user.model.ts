@@ -3,10 +3,18 @@ export interface User {
     name: string;
     login: string;
     email: string;
+}
+
+export interface UserCreate extends Omit<User, 'id'> {
     password: string;
-    phoneNumber: number;
-    photo?: string;
-    matricula: string;
-    isActive: boolean;
-    createdAt: Date;
+}
+
+export interface UserUpdate extends User {
+    password?: string;
+}
+
+export interface LoginResponse {
+    access_token: string;
+    toke_type: string;
+    user: User;
 }
